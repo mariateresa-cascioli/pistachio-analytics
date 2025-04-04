@@ -141,15 +141,15 @@ export function efficienzaDelRaccolto(produzioneEffettiva, produzioneMassimaTeor
 // Metodi per USO DELLE RISORSE
 // quantitaPianteHA quante piante sono presenti in un ETTARO (AH)
 export function calcoloQuantitaPianteAH(densitaNonConvertita) {
-    let intervalli  = {
+    let intervalli = {
         1: [50, 150],
         2: [200, 300],
         3: [150, 200],
         4: [300, 500],
     };
-    const [min,max] = intervalli[densitaNonConvertita] || [0 , 0];
+    const [min, max] = intervalli[densitaNonConvertita] || [0, 0];
 
-        // Calcolo random incluso tra min e max
+    // Calcolo random incluso tra min e max
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
@@ -159,12 +159,12 @@ export function calcoloUtilizzoIrrigazione(irrigazioneNonConvertita, quantitaPia
         1: [250, 500],
         2: [500, 800],
         3: [800, 1000],
-        4: [250, 500] 
+        4: [250, 500]
     };
 
-    const [min,max] = intervalli[irrigazioneNonConvertita] || [0 , 0];
+    const [min, max] = intervalli[irrigazioneNonConvertita] || [0, 0];
     const litriPerPianta = Math.floor(Math.random() * (max - min + 1)) + min;
-    
+
     return quantitaPianteHA * litriPerPianta;
 }
 
@@ -182,10 +182,10 @@ export function calcoloUtilizzoFertilizzazione(fertilizzazioneNonConvertita) {
         3: [100, 150],
         4: [25, 50]
     };
-    
-    const [min,max] = intervalli[fertilizzazioneNonConvertita] || [0 , 0];
+
+    const [min, max] = intervalli[fertilizzazioneNonConvertita] || [0, 0];
     const fertilizzazionePerEttaro = Math.floor(Math.random() * (max - min + 1)) + min;
-    
+
     return fertilizzazionePerEttaro;
 }
 export function utilizzoFertilizzazioneNormalizzato(utilizzoFertilizzazioneTotale) {
@@ -199,7 +199,7 @@ export function usoDelleRisorse(produzioneEffettiva, UtilizzoIrrigazioneNormaliz
     let produzioneEffettivaNormalizzata = produzioneEffettiva / maxProduzione;
 
     let risorseUsate = UtilizzoIrrigazioneNormalizzato * UtilizzoFertilizzazioneNormalizzato;
-
+    console.log(produzioneEffettiva);
     return (produzioneEffettivaNormalizzata * risorseUsate) * 100;
 }
 // fine metodi per USO DELLE RISORSE
@@ -211,16 +211,16 @@ export function usoDelleRisorse(produzioneEffettiva, UtilizzoIrrigazioneNormaliz
 // Funzione che ci ritorna la quantita effettiva di piante 
 // Numero di Ettari x Numero di Piante contenute in un Ettaro
 export function calcoloQuantitaPiante(ettari, densitaNonConvertita) {
-   let intervalli  = {
+    let intervalli = {
         1: [50, 150],
         2: [200, 300],
         3: [150, 200],
         4: [300, 500],
     };
 
-    const [min,max] = intervalli[densitaNonConvertita] || [0 , 0];
+    const [min, max] = intervalli[densitaNonConvertita] || [0, 0];
     const piantePerEttaro = Math.floor(Math.random() * (max - min + 1)) + min;
-    
+
     return ettari * piantePerEttaro;
 }
 
@@ -231,12 +231,12 @@ export function calcoloCostoIrrigazione(irrigazioneNonConvertita, costoAcquaAlLi
         1: [250, 500],
         2: [500, 800],
         3: [800, 1000],
-        4: [250, 500] 
+        4: [250, 500]
     };[irrigazioneNonConvertita] || 0;
 
-    const [min,max] = intervalli[irrigazioneNonConvertita] || [0 , 0];
+    const [min, max] = intervalli[irrigazioneNonConvertita] || [0, 0];
     const litriPerPianta = Math.floor(Math.random() * (max - min + 1)) + min;
-    
+
     return quantitaPiante * litriPerPianta * costoAcquaAlLitro;
 }
 
@@ -250,16 +250,16 @@ export function costoIrrigazioneNormalizzato(costoIrrigazione, quantitaPiante, c
 // irrigazioneConvertita è un valore compreso tra 0 e 1
 // costoAcquaAlLitro è il valore in euro di 1L di acqua
 export function calcoloCostoFertilizzazione(fertilizzazioneNonConvertita, costoFertilizzazione, ettari) {
-     let intervalli = {
+    let intervalli = {
         1: [25, 50],
         2: [50, 100],
         3: [100, 150],
         4: [25, 50]
     };
 
-    const [min,max] = intervalli[fertilizzazioneNonConvertita] || [0 , 0];
+    const [min, max] = intervalli[fertilizzazioneNonConvertita] || [0, 0];
     const fertilizzazionePerEttaro = Math.floor(Math.random() * (max - min + 1)) + min;
-    
+
     return ettari * fertilizzazionePerEttaro * costoFertilizzazione;
 }
 

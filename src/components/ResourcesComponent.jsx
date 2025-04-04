@@ -23,6 +23,7 @@ export const ResourcesComponent = ({ valoriIniziali, produzioneAnnua }) => {
     const [efficienzaAnnuaTeoricaMassima, setEfficienzaAnnuaTeoricaMassima] = useState('')
     const [utilizzoIrrigazioneEffettivo, setutilizzoIrrigazioneEffettivo] = useState('')
     const [utilizzoFertilizzazioneEffettivo, setutilizzoFertilizzazioneEffettivo] = useState('')
+    const [usoRisorse, setUsoRisorse] = useState('')
 
 
     useEffect(() => {
@@ -32,22 +33,54 @@ export const ResourcesComponent = ({ valoriIniziali, produzioneAnnua }) => {
         let utilizzoIrrigazioneN = utilizzoIrrigazioneNormalizzato(utilizzoIrrigazioneEffettivo, quantitaPianteAH)
         let utilizzoFertilizzazioneN = utilizzoFertilizzazioneNormalizzato(utilizzoFertilizzazioneEffettivo)
         let usoRisorse = usoDelleRisorse(produzioneAnnua, utilizzoIrrigazioneN, utilizzoFertilizzazioneN)
+        setUsoRisorse(usoRisorse)
         setutilizzoIrrigazioneEffettivo(utilizzoIrrigazioneEffettivo)
         setutilizzoFertilizzazioneEffettivo(utilizzoFertilizzazioneEffettivo)
         setEfficienzaAnnuaEffettiva(produzioneAnnua)
         setEfficienzaAnnuaTeoricaMassima(3000)
-    }, [valoriIniziali]);
+        setutilizzoIrrigazioneN(utilizzoIrrigazioneN)
+        setutilizzoFertilizzazioneN(utilizzoFertilizzazioneN)
+    }, [produzioneAnnua]);
 
     ChartJS.register(ArcElement, Tooltip, Legend, Title);
-    const doughnutData = {
-        labels: ['% Efficienza calcolata', '% Margine di miglioramento'],
+    const doughnutDataEfficienza = {
+        labels: ['Efficienza calcolata', 'Margine di miglioramento'],
         datasets: [
             {
-                label: 'Color Distribution',
-                data: [efficienzaAnnuaEffettiva, efficienzaAnnuaTeoricaMassima - efficienzaAnnuaEffettiva],
+                label: '',
+                data: [parseInt(usoRisorse), parseInt(100 - usoRisorse)],
                 backgroundColor: [
                     '#90981b',
-                    '#7a302b',
+                    '#90981b70',
+                ],
+                borderWidth: 0,
+            },
+        ],
+    };
+
+    const doughnutDataIrrigazione = {
+        labels: ['Efficienza Irrigazione'],
+        datasets: [
+            {
+                label: '',
+                data: [parseInt(utilizzoIrrigazioneN * 100), parseInt(100 - (utilizzoIrrigazioneN * 100))],
+                backgroundColor: [
+                    '#3BAFDA',
+                    '#3bafda7a',
+                ],
+                borderWidth: 0,
+            },
+        ],
+    };
+    const doughnutDataFertilizzazione = {
+        labels: ['Efficienza fertilizzazione'],
+        datasets: [
+            {
+                label: '',
+                data: [parseInt(utilizzoFertilizzazioneN * 100), parseInt(100 - (utilizzoFertilizzazioneN * 100))],
+                backgroundColor: [
+                    '#f6bb42',
+                    '#f6bb427d',
                 ],
                 borderWidth: 0,
             },
@@ -55,13 +88,16 @@ export const ResourcesComponent = ({ valoriIniziali, produzioneAnnua }) => {
     };
 
     const barData = {
-        labels: ['Efficienza teorica massima', 'Efficienza effettivo', 'utilizzo irrigazione', 'utilizzo fertilizzazione'],
+        labels: ['Efficienza teorica massima', 'Efficienza effettivo'],
+        // 'utilizzo irrigazione', 'utilizzo fertilizzazione'],
         datasets: [
             {
                 label: 'Sales',
-                data: [parseInt(efficienzaAnnuaTeoricaMassima), parseInt(efficienzaAnnuaEffettiva), parseInt(utilizzoIrrigazioneEffettivo), parseInt(utilizzoFertilizzazioneEffettivo)],
-                backgroundColor: ['#90981b', '#7a302b', '#6C4A36ff', '#A89B6Dff'],
-                borderColor: ['#90981b', '#7a302b', '#6C4A36ff', '#A89B6Dff'],
+                data: [parseInt(efficienzaAnnuaTeoricaMassima), parseInt(produzioneAnnua)],
+                //, parseInt(utilizzoIrrigazioneEffettivo), parseInt(utilizzoFertilizzazioneEffettivo)],
+                backgroundColor: ['#7a302b', '#90981b'],
+                borderColor: ['#7a302b', '#90981b'],
+
                 borderWidth: 1,
             },
 
@@ -73,10 +109,15 @@ export const ResourcesComponent = ({ valoriIniziali, produzioneAnnua }) => {
         plugins: {
             tooltip: {
                 callbacks: {
+                    // Funzione che modifica la visibilità della tooltip
                     label: function (tooltipItem) {
-                        return tooltipItem.label + ': ' + tooltipItem.raw;
-                    },
-                },
+                        // Nascondi la tooltip per il secondo elemento (indice 1)
+                        if (tooltipItem.dataIndex === 1) {
+                            return 'Margine di miglioramento: ' + tooltipItem.raw + '%';  // Rimuovi la label (tooltip) per l'indice 1
+                        }
+                        return tooltipItem.label + ': ' + tooltipItem.raw + '%';  // Altrimenti, mostra la label normale
+                    }
+                }
             },
             title: {
                 display: true,
@@ -102,7 +143,7 @@ export const ResourcesComponent = ({ valoriIniziali, produzioneAnnua }) => {
             tooltip: {
                 callbacks: {
                     label: function (tooltipItem) {
-                        return tooltipItem.label + ': ' + tooltipItem.raw;
+                        return tooltipItem.label + ': ' + tooltipItem.raw + 'kg/ha';
                     },
                 },
             },
@@ -126,24 +167,30 @@ export const ResourcesComponent = ({ valoriIniziali, produzioneAnnua }) => {
         }, scales: {
             y: {
                 title: {
-                    display: false,
-                    text: 'Produzione Annua (unità)',  // Etichetta asse Y
+                    display: true,
+                    text: 'Produzione Annua (kg/ha)',  // Etichetta asse Y
                     font: {
-                        size: 14,
-                        weight: 'bold',
+                        family: 'Poppins-SemiBold',
+                        size: 12,
+                        weight: 'normal',
+                        style: 'normal',
                     },
+                    color: '#341F14ff'
                 },
                 beginAtZero: true,  // Imposta l'inizio dell'asse Y a zero
                 //max: 1, 
             },
             x: {
                 title: {
-                    display: false,
-                    text: '',  // Etichetta asse Y
+                    display: true,
+                    text: 'Produzione annua',  // Etichetta asse Y
                     font: {
-                        size: 14,
-                        weight: 'bold',
+                        family: 'Poppins-SemiBold',
+                        size: 12,
+                        weight: 'normal',
+                        style: 'normal',
                     },
+                    color: '#341F14ff'
                 },
                 beginAtZero: true,  // Imposta l'inizio dell'asse Y a zero
                 //max: 1, 
@@ -160,20 +207,29 @@ export const ResourcesComponent = ({ valoriIniziali, produzioneAnnua }) => {
 
     return (
         <div>
-
-            <div className="flex vertical-center">
+            <div className="flex w-100" Style="margin-left: 40px; place-self: center;">
                 <div className={classNames("w-50 ", styles.resources_chart_container)}>
-                    <div className="flex wrap">
-                        <div className={styles.resources_chart_wrapper}>
-                            <div style={{ width: '50%', margin: '0 auto' }}>
-                                <Doughnut data={doughnutData} options={options} />
+                    <div className={styles.resources_chart_wrapper_bar}>
+                        <Bar data={barData} options={barOptions} />
+                    </div>
+                </div>
+                <div className={classNames("w-50 ", styles.resources_chart_container)} Style="place-items: center;">
+                    <div Style="margin-top: -90px;">
+                        <div className={classNames("w-100 ")}>
+                            <div className={styles.resources_chart_wrapper}>
+                                <Doughnut data={doughnutDataEfficienza} options={options} />
                             </div>
                         </div>
                     </div>
-                </div>
-                <div className={classNames("w-50 ", styles.resources_chart_container)}>
-                    <div style={{ margin: '0 auto' }}>
-                        <Bar data={barData} options={barOptions} />
+                    <div className="flex">
+                        <div className={styles.resources_chart_wrapper_small}>
+                            <Doughnut data={doughnutDataIrrigazione} options={options} />
+                        </div>
+                        <div className={styles.resources_chart_wrapper_small}>
+
+                            <Doughnut data={doughnutDataFertilizzazione} options={options} />
+
+                        </div>
                     </div>
                 </div>
             </div>

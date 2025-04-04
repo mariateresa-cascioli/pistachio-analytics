@@ -45,7 +45,7 @@ export const FormComponent = ({ obj, setObj }) => {
     let baseValues = {
         "controllo_parassiti": { "label": "Nessun controllo", "value": 1 },
         "densita": { "label": "<150 piante/ha", "value": 1 },
-        "eta": { "label": "<5 o anni", "value": 1 },
+        "eta": { "label": "<5 anni", "value": 1 },
         "fertilizzazione": { "label": "<50 kg/ha/anno", "value": 1 },
         "irraggiamento": { "label": "<2000 h/anno", "value": 1 },
         "irrigazione": { "label": "<500 L/pianta/anno", "value": 1 },
