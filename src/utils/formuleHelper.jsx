@@ -199,6 +199,10 @@ export function usoDelleRisorse(produzioneEffettiva, costoIrrigazioneNormalizzat
 
     return (produzioneEffettivaNormalizzata * risorseUsate) * 100;
 }
+
+export function calcoloCostoVenditaPistacchio(quantitaKGperHA, costoPistacchioKG, ettari) {
+    return quantitaKGperHA*costoKGperHa*ettari;
+}
 // fine Metodi per USO DELLE RISORSE
 
 // Metodi per PERFORMANCE FINANZIARIA
