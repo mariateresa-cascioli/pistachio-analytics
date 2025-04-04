@@ -1,36 +1,50 @@
 import React, { useState, useEffect } from "react";
 import styles from "../css/AnalyticsComponents.module.scss"
 import classNames from "classnames";
-import { Doughnut } from 'react-chartjs-2';
-import { Chart as ChartJS, ArcElement, Tooltip, Legend, Title } from 'chart.js';
+import { Bar, Doughnut } from 'react-chartjs-2';
+import { Chart as ChartJS, ArcElement, BarElement, Tooltip, Legend, Title } from 'chart.js';
 import ReactSlider from "react-slider";
-import { calcoloQuantitaPiante, calcoloCostoIrrigazione, calcoloCostoFertilizzazione, usoDelleRisorse } from "../utils/formuleHelper";
+import { calcoloQuantitaPiante, calcoloCostoIrrigazione, calcoloCostoFertilizzazione, usoDelleRisorse, costoIrrigazioneNormalizzato, costoFertilizzazioneNormalizzato, calcoloCostoVenditaPistacchio } from "../utils/formuleHelper";
 
 export const ResourcesComponent = ({ valoriIniziali, produzioneAnnua }) => {
 
     const [efficienzaCalcolata, setEfficienzaCalcolata] = useState('')
     const [efficienzaStimataMassima, setEfficienzaStimataMassima] = useState('')
+    const [costoIrrigazioneN, setCostoIrrigazioneN] = useState('')
+    const [costoFertilizzazioneN, setCostoFertilizzazioneN] = useState('')
+    const [guadagnoEffettivo, setGuadagnoEffettivo] = useState('')
+    const [guadagnoTeoricoMassimo, setGuadagnoTeoricoMassimo] = useState('')
+    const [costoIrrigazioneEffettivo, setCostoIrrigazioneEffettivo] = useState('')
+    const [costoFertilizzazioneEffettivo, setCostoFertilizzazioneEffettivo] = useState('')
     const [obj, setObj] = useState({
         ettari: 10,
         costo_acqua: 0.0005,
         costo_fertilizzazione: 10,
-        //costo_densita_impianto: 5,
+        costo_pistacchio: 12.5,
     })
 
     useEffect(() => {
         let quantitaPiante = calcoloQuantitaPiante(obj['ettari'], valoriIniziali['densita'].value)
-        let costoIrrigazioneNormalizzato = calcoloCostoIrrigazione(valoriIniziali['irrigazione'].value, obj['costo_acqua'], quantitaPiante)
-        let costoFertilizzazioneNormalizzato = calcoloCostoFertilizzazione(valoriIniziali['fertilizzazione'].value, obj['costo_fertilizzazione'], obj['ettari'])
-        let usoRisorse = usoDelleRisorse(produzioneAnnua, costoIrrigazioneNormalizzato, costoFertilizzazioneNormalizzato)
+        let costoIrrigazioneEffettivo = calcoloCostoIrrigazione(valoriIniziali['irrigazione'].value, obj['costo_acqua'], quantitaPiante)
+        let costoFertilizzazioneEffettivo = calcoloCostoFertilizzazione(valoriIniziali['fertilizzazione'].value, obj['costo_fertilizzazione'], obj['ettari'])
+        let costoIrrigazioneN = costoIrrigazioneNormalizzato(costoIrrigazioneEffettivo, quantitaPiante, obj['costo_acqua'])
+        let costoFertilizzazioneN = costoFertilizzazioneNormalizzato(costoFertilizzazioneEffettivo, obj['ettari'], obj['costo_fertilizzazione'])
+        let usoRisorse = usoDelleRisorse(produzioneAnnua, costoIrrigazioneN, costoFertilizzazioneN)
+        let guadagnoVenditaPistacchioTeorica = calcoloCostoVenditaPistacchio(3000, obj['costo_pistacchio'], obj['ettari'])
+        let guadagnoVenditaPistacchioEffettiva = calcoloCostoVenditaPistacchio(produzioneAnnua, obj['costo_pistacchio'], obj['ettari'])
         let num = Math.floor(usoRisorse)
         let num2 = 100 - parseInt(num)
+        setCostoIrrigazioneEffettivo(costoIrrigazioneEffettivo)
+        setCostoFertilizzazioneEffettivo(costoFertilizzazioneEffettivo)
         setEfficienzaCalcolata(num)
         setEfficienzaStimataMassima(num2)
+        setGuadagnoEffettivo(guadagnoVenditaPistacchioEffettiva)
+        setGuadagnoTeoricoMassimo(guadagnoVenditaPistacchioTeorica)
     }, [valoriIniziali, obj]);
 
     ChartJS.register(ArcElement, Tooltip, Legend, Title);
     const doughnutData = {
-        labels: ['% Efficienza calcolata', '% Efficienza stimata massima'],
+        labels: ['% Efficienza calcolata', '% Margine di miglioramento'],
         datasets: [
             {
                 label: 'Color Distribution',
@@ -41,6 +55,20 @@ export const ResourcesComponent = ({ valoriIniziali, produzioneAnnua }) => {
                 ],
                 borderWidth: 0,
             },
+        ],
+    };
+
+    const barData = {
+        labels: ['Guadagno teorico massimo €', 'Guadagno effettivo €', 'Costo irrigazione €', 'Costo fertilizzazione €'],
+        datasets: [
+            {
+                label: 'Sales',
+                data: [parseInt(guadagnoTeoricoMassimo), parseInt(guadagnoEffettivo), parseInt(costoIrrigazioneEffettivo), parseInt(costoFertilizzazioneEffettivo)],
+                backgroundColor: ['#90981b', '#7a302b', '#6C4A36ff', '#A89B6Dff'],
+                borderColor: ['#90981b', '#7a302b', '#6C4A36ff', '#A89B6Dff'],
+                borderWidth: 1,
+            },
+
         ],
     };
 
@@ -72,6 +100,61 @@ export const ResourcesComponent = ({ valoriIniziali, produzioneAnnua }) => {
             }
         },
     }
+    const barOptions = {
+        responsive: true,
+        plugins: {
+            tooltip: {
+                callbacks: {
+                    label: function (tooltipItem) {
+                        return tooltipItem.label + ': ' + tooltipItem.raw;
+                    },
+                },
+            },
+            title: {
+                display: true,
+                text: '',
+            },
+            legend: {
+                position: 'top',
+                labels: {
+                    font: {
+                        family: 'Poppins-SemiBold',
+                        size: 12,
+                        weight: 'normal',
+                        style: 'normal',
+                    },
+                    color: '#341F14ff'
+                }
+            }
+        }, scales: {
+            y: {
+                title: {
+                    display: true,
+                    text: 'Produzione Annua (unità)',  // Etichetta asse Y
+                    font: {
+                        size: 14,
+                        weight: 'bold',
+                    },
+                },
+                beginAtZero: true,  // Imposta l'inizio dell'asse Y a zero
+                //max: 1, 
+            },
+            x: {
+                title: {
+                    display: true,
+                    text: '',  // Etichetta asse Y
+                    font: {
+                        size: 14,
+                        weight: 'bold',
+                    },
+                },
+                beginAtZero: true,  // Imposta l'inizio dell'asse Y a zero
+                //max: 1, 
+            }
+        },
+    }
+
+
     const handleField = (input, field) => {
         let tmp = obj
         tmp[field] = input
@@ -80,18 +163,9 @@ export const ResourcesComponent = ({ valoriIniziali, produzioneAnnua }) => {
 
     return (
         <div>
-            <div className="flex ">
-                <div className={classNames("w-50 ", styles.harvest_chart_container)}>
-                    <div className="flex wrap">
-                        <div className={styles.harvest_chart_wrapper}>
-                            <div style={{ width: '50%', margin: '0 auto' }}>
-                                <Doughnut data={doughnutData} options={options} />
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div className="w-50 ml-20" Style="align-self: center;">
-                    <div className="justify-left">
+            <div className="w-100">
+                <div className="flex">
+                    <div className={classNames("justify-left", styles.slider_cointainer)}>
                         <div className="mb-10 default-font-size semiBold text-dark">
                             Numero ettari: {obj['ettari']}
                         </div>
@@ -105,11 +179,8 @@ export const ResourcesComponent = ({ valoriIniziali, produzioneAnnua }) => {
                             defaultValue={obj['ettari']}
                             onChange={(val) => handleField(val, 'ettari')}
                         />
-                        <div className="default-font-size regular text-dark mt-10">
-                            text
-                        </div>
                     </div>
-                    <div className="mt-20 justify-left">
+                    <div className={classNames("justify-left", styles.slider_cointainer)}>
                         <div className="mb-10 default-font-size semiBold text-dark">
                             Costo acqua/litro: {obj['costo_acqua']}€
                         </div>
@@ -123,11 +194,8 @@ export const ResourcesComponent = ({ valoriIniziali, produzioneAnnua }) => {
                             defaultValue={obj['costo_acqua']}
                             onChange={(val) => handleField(val, 'costo_acqua')}
                         />
-                        <div className="default-font-size regular text-dark mt-10">
-                            text
-                        </div>
                     </div>
-                    <div className="mt-20 justify-left">
+                    <div className={classNames("justify-left", styles.slider_cointainer)}>
                         <div className="mb-10 default-font-size semiBold text-dark">
                             Costo fertilizzazione: {obj['costo_fertilizzazione']}€
                         </div>
@@ -141,30 +209,41 @@ export const ResourcesComponent = ({ valoriIniziali, produzioneAnnua }) => {
                             defaultValue={obj['costo_fertilizzazione']}
                             onChange={(val) => handleField(val, 'costo_fertilizzazione')}
                         />
-                        <div className="default-font-size regular text-dark mt-10">
-                            text
-                        </div>
                     </div>
-                    {/* 
-                    <div className="mt-20 justify-left">
-                        <div className="mb-10 default-font-size semiBold text-dark ">
-                            Costo densità impianto: {obj['costo_densita_impianto']}€
+                    <div className={classNames("justify-left", styles.slider_cointainer)}>
+                        <div className="mb-10 default-font-size semiBold text-dark">
+                            Costo pistacchio: {obj['costo_pistacchio']}€
                         </div>
                         <ReactSlider
                             className="custom-slider"
                             thumbClassName="custom-thumb"
                             trackClassName="custom-track"
-                            min={1}
-                            max={50}
-                            step={1}
-                            defaultValue={5}
-                            onChange={(val) => handleField(val, 'costo_densita_impianto')}
+                            min={5}
+                            max={100}
+                            step={2.5}
+                            defaultValue={obj['costo_pistacchio']}
+                            onChange={(val) => handleField(val, 'costo_pistacchio')}
                         />
                     </div>
-                    */}
                 </div>
             </div>
-        </div>
+            <div className="flex vertical-center">
+                <div className={classNames("w-50 ", styles.resources_chart_container)}>
+                    <div className="flex wrap">
+                        <div className={styles.resources_chart_wrapper}>
+                            <div style={{ width: '50%', margin: '0 auto' }}>
+                                <Doughnut data={doughnutData} options={options} />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div className={classNames("w-50 ", styles.resources_chart_container)}>
+                    <div style={{ margin: '0 auto' }}>
+                        <Bar data={barData} options={barOptions} />
+                    </div>
+                </div>
+            </div>
+        </div >
 
     );
 };

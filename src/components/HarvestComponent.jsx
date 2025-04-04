@@ -47,8 +47,8 @@ export const HarvestComponent = ({ roundedValues, produzioneMensileTop, produzio
             {
                 label: 'Produzione kg/ha',
                 data: roundedValues,
-                borderColor: '#90981b',
-                backgroundColor: '#90981b',
+                borderColor: '#D72638',
+                backgroundColor: '#D72638',
                 fill: true,
             },
             {
@@ -80,16 +80,14 @@ export const HarvestComponent = ({ roundedValues, produzioneMensileTop, produzio
         responsive: true,
         maintainAspectRatio: false,
         plugins: {
-            legend: {
-                position: 'top',
-                display: true
-            },
             tooltip: {
                 mode: 'index',
                 intersect: false,
 
             },
             legend: {
+                position: 'top',
+                display: true,
                 labels: {
                     font: {
                         family: 'Poppins-SemiBold',  // Usa il font dichiarato in SCSS

@@ -167,7 +167,7 @@ export function calcoloCostoIrrigazione(irrigazioneNonConvertita, costoAcquaAlLi
 export function costoIrrigazioneNormalizzato(costoIrrigazione, quantitaPiante, costoAcquaAlLitro) {
     // Normalizzazione rispetto valore ottimale 900 litri/pianta
     let maxCostoIrrigazione = 900 * quantitaPiante * costoAcquaAlLitro;
-    
+
     return costoIrrigazione / maxCostoIrrigazione;
 }
 
@@ -184,7 +184,7 @@ export function calcoloCostoFertilizzazione(fertilizzazioneNonConvertita, costoF
     return ettari * fertilizzazionePerEttaro * costoFertilizzazione;
 }
 
-export function costoFertilizzazioneNormalizzato (costoFertilizzazioneTotale, ettari, costoFertilizzazione ) {
+export function costoFertilizzazioneNormalizzato(costoFertilizzazioneTotale, ettari, costoFertilizzazione) {
     // Normalizzazione rispetto al valore ottimale di raccolta 125 kg/ha
     let maxCostoFertilizzazione = 125 * ettari * costoFertilizzazione;
     return costoFertilizzazioneTotale / maxCostoFertilizzazione;
@@ -201,7 +201,7 @@ export function usoDelleRisorse(produzioneEffettiva, costoIrrigazioneNormalizzat
 }
 
 export function calcoloCostoVenditaPistacchio(quantitaKGperHA, costoPistacchioKG, ettari) {
-    return quantitaKGperHA*costoKGperHa*ettari;
+    return quantitaKGperHA * costoPistacchioKG * ettari;
 }
 // fine Metodi per USO DELLE RISORSE
 
