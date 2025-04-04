@@ -161,11 +161,13 @@ export function calcoloCostoIrrigazione(irrigazioneNonConvertita, costoAcquaAlLi
         4: 350
     }[irrigazioneNonConvertita] || 0;
 
-    let costoIrrigazione = quantitaPiante * litriPerPianta * costoAcquaAlLitro;
+    return quantitaPiante * litriPerPianta * costoAcquaAlLitro;
+}
 
-    // Normalizzazione rispetto al massimo teorico (ipotizziamo max 1300 litri/pianta con 2500 piante)
+export function costoIrrigazioneNormalizzato(costoIrrigazione, quantitaPiante, costoAcquaAlLitro) {
+    // Normalizzazione rispetto valore ottimale 900 litri/pianta
     let maxCostoIrrigazione = 900 * quantitaPiante * costoAcquaAlLitro;
-    //let maxCostoIrrigazione = 900 * costoAcquaAlLitro;
+    
     return costoIrrigazione / maxCostoIrrigazione;
 }
 
@@ -179,16 +181,18 @@ export function calcoloCostoFertilizzazione(fertilizzazioneNonConvertita, costoF
         4: 35
     }[fertilizzazioneNonConvertita] || 0;
 
-    let costoFertilizzazioneTotale = ettari * fertilizzazionePerEttaro * costoFertilizzazione;
+    return ettari * fertilizzazionePerEttaro * costoFertilizzazione;
+}
 
-    // Normalizzazione rispetto al massimo teorico (ipotizziamo max 200 kg/ha)
+export function costoFertilizzazioneNormalizzato (costoFertilizzazioneTotale, ettari, costoFertilizzazione ) {
+    // Normalizzazione rispetto al valore ottimale di raccolta 125 kg/ha
     let maxCostoFertilizzazione = 125 * ettari * costoFertilizzazione;
     return costoFertilizzazioneTotale / maxCostoFertilizzazione;
 }
 
 // Uso delle risorse normalizzato
 export function usoDelleRisorse(produzioneEffettiva, costoIrrigazioneNormalizzato, costoFertilizzazioneNormalizzato) {
-    let maxProduzione = 3000; // Produzione massima teorica (3000 kg/ha)
+    let maxProduzione = 3000; // Produzione massima teorica 3000 kg/ha
     let produzioneEffettivaNormalizzata = produzioneEffettiva / maxProduzione;
 
     let risorseUsate = costoIrrigazioneNormalizzato * costoFertilizzazioneNormalizzato;
