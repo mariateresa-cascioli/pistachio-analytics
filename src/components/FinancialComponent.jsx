@@ -49,11 +49,11 @@ export const FinancialComponent = ({ valoriIniziali, produzioneAnnua }) => {
         setEfficienzaStimataMassima(num2)
         setGuadagnoEffettivo(guadagnoVenditaPistacchioEffettiva)
         setGuadagnoTeoricoMassimo(guadagnoVenditaPistacchioTeorica)
-    }, [valoriIniziali, obj]);
+    }, [produzioneAnnua, obj]);
 
     ChartJS.register(ArcElement, Tooltip, Legend, Title);
     const doughnutData = {
-        labels: ['% Efficienza calcolata', '% Margine di miglioramento'],
+        labels: ['Efficienza calcolata', 'Margine di miglioramento'],
         datasets: [
             {
                 label: 'Color Distribution',
@@ -68,7 +68,7 @@ export const FinancialComponent = ({ valoriIniziali, produzioneAnnua }) => {
     };
 
     const barData = {
-        labels: ['Guadagno teorico massimo €', 'Guadagno effettivo €', 'Costo irrigazione €', 'Costo fertilizzazione €'],
+        labels: ['Guadagno teorico massimo', 'Guadagno effettivo', 'Costo irrigazione', 'Costo fertilizzazione'],
         datasets: [
             {
                 label: 'Sales',
@@ -87,7 +87,7 @@ export const FinancialComponent = ({ valoriIniziali, produzioneAnnua }) => {
             tooltip: {
                 callbacks: {
                     label: function (tooltipItem) {
-                        return tooltipItem.label + ': ' + tooltipItem.raw;
+                        return tooltipItem.label + ': ' + tooltipItem.raw + '%';
                     },
                 },
             },
@@ -115,7 +115,7 @@ export const FinancialComponent = ({ valoriIniziali, produzioneAnnua }) => {
             tooltip: {
                 callbacks: {
                     label: function (tooltipItem) {
-                        return tooltipItem.label + ': ' + tooltipItem.raw;
+                        return tooltipItem.label + ': ' + tooltipItem.raw + '€';
                     },
                 },
             },
@@ -140,23 +140,29 @@ export const FinancialComponent = ({ valoriIniziali, produzioneAnnua }) => {
             y: {
                 title: {
                     display: false,
-                    text: 'Produzione Annua (unità)',  // Etichetta asse Y
+                    text: 'Euro €',  // Etichetta asse Y
                     font: {
-                        size: 14,
-                        weight: 'bold',
+                        family: 'Poppins-SemiBold',
+                        size: 12,
+                        weight: 'normal',
+                        style: 'normal',
                     },
+                    color: '#341F14ff'
                 },
                 beginAtZero: true,  // Imposta l'inizio dell'asse Y a zero
                 //max: 1, 
             },
             x: {
                 title: {
-                    display: false,
-                    text: '',  // Etichetta asse Y
+                    display: true,
+                    text: 'Produzione Annua',  // Etichetta asse Y
                     font: {
-                        size: 14,
-                        weight: 'bold',
+                        family: 'Poppins-SemiBold',
+                        size: 12,
+                        weight: 'normal',
+                        style: 'normal',
                     },
+                    color: '#341F14ff'
                 },
                 beginAtZero: true,  // Imposta l'inizio dell'asse Y a zero
                 //max: 1, 
@@ -240,10 +246,8 @@ export const FinancialComponent = ({ valoriIniziali, produzioneAnnua }) => {
             <div className="flex vertical-center">
                 <div className={classNames("w-50 ", styles.resources_chart_container)}>
                     <div className="flex wrap">
-                        <div className={styles.resources_chart_wrapper}>
-                            <div style={{ width: '50%', margin: '0 auto' }}>
-                                <Doughnut data={doughnutData} options={options} />
-                            </div>
+                        <div className={styles.resources_chart_wrapper_financial}>
+                            <Doughnut data={doughnutData} options={options} />
                         </div>
                     </div>
                 </div>
