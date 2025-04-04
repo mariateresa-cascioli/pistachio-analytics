@@ -197,7 +197,7 @@ export const ResourcesComponent = ({ valoriIniziali, produzioneAnnua }) => {
                     </div>
                     <div className={classNames("justify-left", styles.slider_cointainer)}>
                         <div className="mb-10 default-font-size semiBold text-dark">
-                            Costo fertilizzazione: {obj['costo_fertilizzazione']}€
+                            Costo fertilizzazione/kg: {obj['costo_fertilizzazione']}€
                         </div>
                         <ReactSlider
                             className="custom-slider"
@@ -212,7 +212,7 @@ export const ResourcesComponent = ({ valoriIniziali, produzioneAnnua }) => {
                     </div>
                     <div className={classNames("justify-left", styles.slider_cointainer)}>
                         <div className="mb-10 default-font-size semiBold text-dark">
-                            Costo pistacchio: {obj['costo_pistacchio']}€
+                            Costo pistacchio/kg: {obj['costo_pistacchio']}€
                         </div>
                         <ReactSlider
                             className="custom-slider"
