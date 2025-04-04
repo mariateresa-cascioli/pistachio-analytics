@@ -129,6 +129,7 @@ export const produzioneMensileBottom = Object.keys(produzioneMensileMiddle).redu
 }, {});
 //Fine creazione degli oggetti con i valori di riferimento per il grafico
 
+
 // METODI PER EFFICIENZA DEL RACCOLTO
 export function efficienzaDelRaccolto(produzioneEffettiva, produzioneMassimaTeorica) {
     return (produzioneEffettiva / produzioneMassimaTeorica) * 100;
@@ -136,7 +137,68 @@ export function efficienzaDelRaccolto(produzioneEffettiva, produzioneMassimaTeor
 // FINE METODI PER EFFICIENZA DEL RACCOLTO
 
 
+
 // Metodi per USO DELLE RISORSE
+// quantitaPianteHA quante piante sono presenti in un ETTARO (AH)
+export function calcoloQuantitaPianteAH(densitaNonConvertita) {
+    let piantePerEttaro = {
+        1: 100,
+        2: 250,
+        3: 175,
+        4: 400
+    }[densitaNonConvertita] || 0;
+
+    return piantePerEttaro;
+}
+
+// quantitaPianteHA quante piante sono presenti in un ETTARO (AH)
+export function calcoloUtilizzoIrrigazione(irrigazioneNonConvertita, quantitaPianteHA) {
+    let litriPerPianta = {
+        1: 350,
+        2: 675,
+        3: 900,
+        4: 350
+    }[irrigazioneNonConvertita] || 0;
+
+    return quantitaPianteHA * litriPerPianta;
+}
+
+export function utilizzoIrrigazioneNormalizzato(utilizzoIrrigazione, quantitaPianteHA) {
+    // Normalizzazione rispetto valore ottimale 900 litri/pianta
+    let maxUtilizzoIrrigazione = 900 * quantitaPianteHA;
+
+    return utilizzoIrrigazione / maxUtilizzoIrrigazione;
+}
+
+export function calcoloUtilizzoFertilizzazione(fertilizzazioneNonConvertita) {
+    let fertilizzazionePerEttaro = {
+        1: 35,
+        2: 75,
+        3: 125,
+        4: 35
+    }[fertilizzazioneNonConvertita] || 0;
+
+    return fertilizzazionePerEttaro;
+}
+export function utilizzoFertilizzazioneNormalizzato(utilizzoFertilizzazioneTotale) {
+    // Normalizzazione rispetto al valore ottimale di raccolta 125 kg/ha
+    let maxUtilizzoFertilizzazione = 125;
+    return utilizzoFertilizzazioneTotale / maxUtilizzoFertilizzazione;
+}
+
+export function usoDelleRisorse(produzioneEffettiva, UtilizzoIrrigazioneNormalizzato, UtilizzoFertilizzazioneNormalizzato) {
+    let maxProduzione = 3000; // Produzione massima teorica 3000 kg/ha
+    let produzioneEffettivaNormalizzata = produzioneEffettiva / maxProduzione;
+
+    let risorseUsate = costoIrrigazioneNormalizzato * costoFertilizzazioneNormalizzato;
+
+    return (produzioneEffettivaNormalizzata * risorseUsate) * 100;
+}
+// fine metodi per USO DELLE RISORSE
+
+
+
+// Metodi per PERFORMANCE FINANZIARIA
 
 // Funzione che ci ritorna la quantita effettiva di piante 
 // Numero di Ettari x Numero di Piante contenute in un Ettaro
@@ -203,8 +265,4 @@ export function usoDelleRisorse(produzioneEffettiva, costoIrrigazioneNormalizzat
 export function calcoloCostoVenditaPistacchio(quantitaKGperHA, costoPistacchioKG, ettari) {
     return quantitaKGperHA * costoPistacchioKG * ettari;
 }
-// fine Metodi per USO DELLE RISORSE
-
-// Metodi per PERFORMANCE FINANZIARIA
-
-// fine metodi per PERFORMANCE FINANZIARIA
+// fine Metodi per PERFORMANCE FINANZIARIA
