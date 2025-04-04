@@ -65,7 +65,7 @@ export const CentralComponent = ({ selectedComponent, setSelectedComponent, mont
                             (selectedComponent === 'Resources' ?
                                 <ResourcesComponent valoriIniziali={obj} produzioneAnnua={produzioneAnnua} />
                                 :
-                                <FinancialComponent />
+                                <FinancialComponent valoriIniziali={obj} produzioneAnnua={produzioneAnnua} />
                             )}
                     </div>
 

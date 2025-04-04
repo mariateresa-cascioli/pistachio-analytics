@@ -190,7 +190,7 @@ export function usoDelleRisorse(produzioneEffettiva, UtilizzoIrrigazioneNormaliz
     let maxProduzione = 3000; // Produzione massima teorica 3000 kg/ha
     let produzioneEffettivaNormalizzata = produzioneEffettiva / maxProduzione;
 
-    let risorseUsate = costoIrrigazioneNormalizzato * costoFertilizzazioneNormalizzato;
+    let risorseUsate = UtilizzoIrrigazioneNormalizzato * UtilizzoFertilizzazioneNormalizzato;
 
     return (produzioneEffettivaNormalizzata * risorseUsate) * 100;
 }
@@ -253,7 +253,7 @@ export function costoFertilizzazioneNormalizzato(costoFertilizzazioneTotale, ett
 }
 
 // Uso delle risorse normalizzato
-export function usoDelleRisorse(produzioneEffettiva, costoIrrigazioneNormalizzato, costoFertilizzazioneNormalizzato) {
+export function performanceFinanziaria(produzioneEffettiva, costoIrrigazioneNormalizzato, costoFertilizzazioneNormalizzato) {
     let maxProduzione = 3000; // Produzione massima teorica 3000 kg/ha
     let produzioneEffettivaNormalizzata = produzioneEffettiva / maxProduzione;
 
