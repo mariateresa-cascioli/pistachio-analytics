@@ -1,0 +1,22 @@
+.harvest_chart_container {
+    width: 100%;
+    max-height: 50vh;
+    height: 50vh;
+    /* Imposta un'altezza chiara */
+    position: relative;
+    /* Importante per contenere il canvas */
+}
+
+.harvest_chart_wrapper {
+    margin-top: 25px;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.harvest_chart_wrapper canvas {
+    width: 100% !important;
+    height: 100% !important;
+}
