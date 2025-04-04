@@ -141,48 +141,56 @@ export function efficienzaDelRaccolto(produzioneEffettiva, produzioneMassimaTeor
 // Metodi per USO DELLE RISORSE
 // quantitaPianteHA quante piante sono presenti in un ETTARO (AH)
 export function calcoloQuantitaPianteAH(densitaNonConvertita) {
-    let piantePerEttaro = {
-        1: 100,
-        2: 250,
-        3: 175,
-        4: 400
-    }[densitaNonConvertita] || 0;
+    let intervalli  = {
+        1: [50, 150],
+        2: [200, 300],
+        3: [150, 200],
+        4: [300, 500],
+    };
+    const [min,max] = intervalli[densitaNonConvertita] || [0 , 0];
 
-    return piantePerEttaro;
+        // Calcolo random incluso tra min e max
+    return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
 // quantitaPianteHA quante piante sono presenti in un ETTARO (AH)
 export function calcoloUtilizzoIrrigazione(irrigazioneNonConvertita, quantitaPianteHA) {
-    let litriPerPianta = {
-        1: 350,
-        2: 675,
-        3: 900,
-        4: 350
-    }[irrigazioneNonConvertita] || 0;
+    let intervalli = {
+        1: [250, 500],
+        2: [500, 800],
+        3: [800, 1000],
+        4: [250, 500] 
+    };
 
+    const [min,max] = intervalli[irrigazioneNonConvertita] || [0 , 0];
+    const litriPerPianta = Math.floor(Math.random() * (max - min + 1)) + min;
+    
     return quantitaPianteHA * litriPerPianta;
 }
 
 export function utilizzoIrrigazioneNormalizzato(utilizzoIrrigazione, quantitaPianteHA) {
-    // Normalizzazione rispetto valore ottimale 900 litri/pianta
-    let maxUtilizzoIrrigazione = 900 * quantitaPianteHA;
+    // Normalizzazione rispetto valore ottimale 1000 litri/pianta
+    let maxUtilizzoIrrigazione = 1000 * quantitaPianteHA;
 
     return utilizzoIrrigazione / maxUtilizzoIrrigazione;
 }
 
 export function calcoloUtilizzoFertilizzazione(fertilizzazioneNonConvertita) {
-    let fertilizzazionePerEttaro = {
-        1: 35,
-        2: 75,
-        3: 125,
-        4: 35
-    }[fertilizzazioneNonConvertita] || 0;
-
+    let intervalli = {
+        1: [25, 50],
+        2: [50, 100],
+        3: [100, 150],
+        4: [25, 50]
+    };
+    
+    const [min,max] = intervalli[fertilizzazioneNonConvertita] || [0 , 0];
+    const fertilizzazionePerEttaro = Math.floor(Math.random() * (max - min + 1)) + min;
+    
     return fertilizzazionePerEttaro;
 }
 export function utilizzoFertilizzazioneNormalizzato(utilizzoFertilizzazioneTotale) {
-    // Normalizzazione rispetto al valore ottimale di raccolta 125 kg/ha
-    let maxUtilizzoFertilizzazione = 125;
+    // Normalizzazione rispetto al valore ottimale di raccolta 150 kg/ha
+    let maxUtilizzoFertilizzazione = 150;
     return utilizzoFertilizzazioneTotale / maxUtilizzoFertilizzazione;
 }
 
@@ -203,32 +211,38 @@ export function usoDelleRisorse(produzioneEffettiva, UtilizzoIrrigazioneNormaliz
 // Funzione che ci ritorna la quantita effettiva di piante 
 // Numero di Ettari x Numero di Piante contenute in un Ettaro
 export function calcoloQuantitaPiante(ettari, densitaNonConvertita) {
-    let piantePerEttaro = {
-        1: 100,
-        2: 250,
-        3: 175,
-        4: 400
-    }[densitaNonConvertita] || 0;
+   let intervalli  = {
+        1: [50, 150],
+        2: [200, 300],
+        3: [150, 200],
+        4: [300, 500],
+    };
 
+    const [min,max] = intervalli[densitaNonConvertita] || [0 , 0];
+    const piantePerEttaro = Math.floor(Math.random() * (max - min + 1)) + min;
+    
     return ettari * piantePerEttaro;
 }
 
 // irrigazioneConvertita è un valore compreso tra 0 e 1
 // costoAcquaAlLitro è il valore in euro di 1L di acqua
 export function calcoloCostoIrrigazione(irrigazioneNonConvertita, costoAcquaAlLitro, quantitaPiante) {
-    let litriPerPianta = {
-        1: 350,
-        2: 675,
-        3: 900,
-        4: 350
-    }[irrigazioneNonConvertita] || 0;
+    let intervalli = {
+        1: [250, 500],
+        2: [500, 800],
+        3: [800, 1000],
+        4: [250, 500] 
+    };[irrigazioneNonConvertita] || 0;
 
+    const [min,max] = intervalli[irrigazioneNonConvertita] || [0 , 0];
+    const litriPerPianta = Math.floor(Math.random() * (max - min + 1)) + min;
+    
     return quantitaPiante * litriPerPianta * costoAcquaAlLitro;
 }
 
 export function costoIrrigazioneNormalizzato(costoIrrigazione, quantitaPiante, costoAcquaAlLitro) {
     // Normalizzazione rispetto valore ottimale 900 litri/pianta
-    let maxCostoIrrigazione = 900 * quantitaPiante * costoAcquaAlLitro;
+    let maxCostoIrrigazione = 1000 * quantitaPiante * costoAcquaAlLitro;
 
     return costoIrrigazione / maxCostoIrrigazione;
 }
@@ -236,19 +250,22 @@ export function costoIrrigazioneNormalizzato(costoIrrigazione, quantitaPiante, c
 // irrigazioneConvertita è un valore compreso tra 0 e 1
 // costoAcquaAlLitro è il valore in euro di 1L di acqua
 export function calcoloCostoFertilizzazione(fertilizzazioneNonConvertita, costoFertilizzazione, ettari) {
-    let fertilizzazionePerEttaro = {
-        1: 35,
-        2: 75,
-        3: 125,
-        4: 35
-    }[fertilizzazioneNonConvertita] || 0;
+     let intervalli = {
+        1: [25, 50],
+        2: [50, 100],
+        3: [100, 150],
+        4: [25, 50]
+    };
 
+    const [min,max] = intervalli[fertilizzazioneNonConvertita] || [0 , 0];
+    const fertilizzazionePerEttaro = Math.floor(Math.random() * (max - min + 1)) + min;
+    
     return ettari * fertilizzazionePerEttaro * costoFertilizzazione;
 }
 
 export function costoFertilizzazioneNormalizzato(costoFertilizzazioneTotale, ettari, costoFertilizzazione) {
     // Normalizzazione rispetto al valore ottimale di raccolta 125 kg/ha
-    let maxCostoFertilizzazione = 125 * ettari * costoFertilizzazione;
+    let maxCostoFertilizzazione = 150 * ettari * costoFertilizzazione;
     return costoFertilizzazioneTotale / maxCostoFertilizzazione;
 }
 
