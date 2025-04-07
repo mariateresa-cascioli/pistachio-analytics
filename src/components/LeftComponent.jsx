@@ -9,31 +9,12 @@ export const LeftComponent = ({ title }) => {
             <div className={styles.description_title}>{title}</div>
             <div className={classNames(styles.description_container)}>
                 <div className={classNames(styles.description)}>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque sollicitudin ex quis neque sollicitudin bibendum.
-                    Pellentesque vulputate turpis eget sem malesuada, at laoreet risus condimentum. Vivamus dapibus dui in mi porttitor, vitae feugiat leo faucibus.
-                    Aliquam erat volutpat. Vivamus non arcu eu mauris lobortis ultrices sit amet tristique quam. Sed facilisis bibendum cursus.
-                    In massa dolor, lobortis nec quam nec, elementum finibus odio.<br />
-                    In laoreet magna ut vehicula aliquam. Praesent sit amet blandit justo.
-                    Vestibulum venenatis vestibulum tempor. Pellentesque sit amet eleifend odio, vel ullamcorper odio.
-                    Suspendisse sed vulputate lorem. Suspendisse pulvinar porta neque. Vestibulum id lobortis leo.
-                    Donec aliquet, augue et rhoncus semper, diam arcu laoreet ante, a laoreet magna ante sit amet elit.<br />
-                    Vestibulum volutpat lacinia nunc, ac placerat magna sollicitudin a. Curabitur iaculis feugiat pretium.
-                    Maecenas posuere condimentum dignissim. Donec fringilla dictum malesuada. Proin in risus ac arcu auctor tincidunt non dapibus nisi.
-                    Etiam nec libero mollis, congue eros sed, cursus turpis. Ut non luctus lorem, at aliquam nibh. Etiam in porta mi.<br />
-                    In laoreet magna ut vehicula aliquam. Praesent sit amet blandit justo.
-                    Vestibulum venenatis vestibulum tempor. Pellentesque sit amet eleifend odio, vel ullamcorper odio.
-                    Suspendisse sed vulputate lorem. Suspendisse pulvinar porta neque. Vestibulum id lobortis leo.
-                    Donec aliquet, augue et rhoncus semper, diam arcu laoreet ante, a laoreet magna ante sit amet elit.<br />
-                    Vestibulum volutpat lacinia nunc, ac placerat magna sollicitudin a. Curabitur iaculis feugiat pretium.
-                    Maecenas posuere condimentum dignissim. Donec fringilla dictum malesuada. Proin in risus ac arcu auctor tincidunt non dapibus nisi.
-                    Etiam nec libero mollis, congue eros sed, cursus turpis. Ut non luctus lorem, at aliquam nibh. Etiam in porta mi.<br />
-                    In laoreet magna ut vehicula aliquam. Praesent sit amet blandit justo.
-                    Vestibulum venenatis vestibulum tempor. Pellentesque sit amet eleifend odio, vel ullamcorper odio.
-                    Suspendisse sed vulputate lorem. Suspendisse pulvinar porta neque. Vestibulum id lobortis leo.
-                    Donec aliquet, augue et rhoncus semper, diam arcu laoreet ante, a laoreet magna ante sit amet elit.<br />
-                    Vestibulum volutpat lacinia nunc, ac placerat magna sollicitudin a. Curabitur iaculis feugiat pretium.
-                    Maecenas posuere condimentum dignissim. Donec fringilla dictum malesuada. Proin in risus ac arcu auctor tincidunt non dapibus nisi.
-                    Etiam nec libero mollis, congue eros sed, cursus turpis. Ut non luctus lorem, at aliquam nibh. Etiam in porta mi.<br />
+                    Proiezione Mensile della Resa di Pistacchio<br/>
+                    La produzione del pistacchio segue un ciclo annuale. Dopo la fioritura primaverile, i frutti si sviluppano e vengono raccolti generalmente verso fine estate o inizio autunno. Tipicamente il picco della raccolta è concentrato nei mesi di agosto e settembre.<br/>
+                    Il grafico mostra l'efficienza stimata della produzione mensile, espressa in chilogrammi, per un ettaro sulla base dei fattori agronomici selezionati.<br/>
+                    Per ottenere i dati mostrati nel grafico, sono stati presi in considerazione diversi fattori agronomici che influenzano la produzione del pistacchio.<br/>
+                    Ogni mese dell'anno è stato associato a un "valore" di produzione, mentre ogni fattore agronomico contribuisce con un peso diverso alla resa del pistacchio.<br/>
+                    I valori di questi fattori sono stati applicati a un modello di previsione dell'"efficienza" di produzione per ciascun mese. Combinando i fattori secondo pesi specifici, si ottiene una proiezione realistica della produzione mensile di pistacchi.<br/>
                 </div>
             </div>
         </React.Fragment>
