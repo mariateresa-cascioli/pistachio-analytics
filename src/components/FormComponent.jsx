@@ -103,8 +103,10 @@ export const FormComponent = ({ obj, setObj }) => {
             <div Style="justify-items: left;" >
                 <div className="flex wrap" Style="padding: 10px 0; justify-self: center;">
                     <div className="mr-20 ">
-                        <div className={classNames('bold', styles.label_form)}>Temperatura invernale</div>
+                        <div id="label-temperatura" className={classNames('bold', styles.label_form)}>Temperatura invernale</div>
                         <Select
+                            inputId="react-select-temperatura"
+                            aria-labelledby="label-temperatura"
                             value={obj['temperatura'] ?? '' ?? ''}
                             onChange={(e) => handleField(e, 'temperatura')}
                             options={[
@@ -119,8 +121,10 @@ export const FormComponent = ({ obj, setObj }) => {
                         />
                     </div>
                     <div className="mr-20 ">
-                        <div className={classNames('bold', styles.label_form)}>Precipitazioni e disponibilità d'acqua</div>
+                        <div id="label-precipitazioni" className={classNames('bold', styles.label_form)}>Precipitazioni e disponibilità d'acqua</div>
                         <Select
+                            inputId="react-select-precipitazioni"
+                            aria-labelledby="label-precipitazioni"
                             value={obj['precipitazioni'] ?? ''}
                             onChange={(e) => handleField(e, 'precipitazioni')}
                             options={[
@@ -132,8 +136,10 @@ export const FormComponent = ({ obj, setObj }) => {
                         />
                     </div>
                     <div className="mr-20 ">
-                        <div className={classNames('bold', styles.label_form)}>Irraggiamento solare</div>
+                        <div id="label-irraggiamento" className={classNames('bold', styles.label_form)}>Irraggiamento solare</div>
                         <Select
+                            inputId="react-select-irraggiamento"
+                            aria-labelledby="label-irraggiamento"
                             value={obj['irraggiamento'] ?? ''}
                             onChange={(e) => handleField(e, 'irraggiamento')}
                             options={[
@@ -145,8 +151,10 @@ export const FormComponent = ({ obj, setObj }) => {
                         />
                     </div>
                     <div className="mr-20 ">
-                        <div className={classNames('bold', styles.label_form)}>Suolo e salinità</div>
+                        <div id="label-suolo" className={classNames('bold', styles.label_form)}>Suolo e salinità</div>
                         <Select
+                            inputId="react-select-suolo"
+                            aria-labelledby="label-suolo"
                             value={obj['suolo'] ?? ''}
                             onChange={(e) => handleField(e, 'suolo')}
                             options={[
@@ -160,8 +168,10 @@ export const FormComponent = ({ obj, setObj }) => {
                         />
                     </div>
                     <div className="mr-20 ">
-                        <div className={classNames('bold', styles.label_form)}>Umidità</div>
+                        <div id="label-umidita" className={classNames('bold', styles.label_form)}>Umidità</div>
                         <Select
+                            inputId="react-select-umidita"
+                            aria-labelledby="label-umidita"
                             value={obj['umidita'] ?? ''}
                             onChange={(e) => handleField(e, 'umidita')}
                             options={[
@@ -173,8 +183,10 @@ export const FormComponent = ({ obj, setObj }) => {
                         />
                     </div>
                     <div className="mr-20 ">
-                        <div className={classNames('bold', styles.label_form)}>Vento</div>
+                        <div id="label-vento" className={classNames('bold', styles.label_form)}>Vento</div>
                         <Select
+                            inputId="react-select-vento"
+                            aria-labelledby="label-vento"
                             value={obj['vento'] ?? ''}
                             onChange={(e) => handleField(e, 'vento')}
                             options={[
@@ -188,8 +200,10 @@ export const FormComponent = ({ obj, setObj }) => {
                 </div>
                 <div className="flex wrap " Style="padding: 10px 0; justify-self: center;">
                     <div className="mr-20 ">
-                        <div className={classNames('bold', styles.label_form)}>Densità impianto</div>
+                        <div id="label-densita" className={classNames('bold', styles.label_form)}>Densità impianto</div>
                         <Select
+                            inputId="react-select-densita"
+                            aria-labelledby="label-densita"
                             value={obj['densita'] ?? ''}
                             onChange={(e) => handleField(e, 'densita')}
                             options={[
@@ -202,8 +216,10 @@ export const FormComponent = ({ obj, setObj }) => {
                         />
                     </div>
                     <div className="mr-20 ">
-                        <div className={classNames('bold', styles.label_form)}>Età piantagione</div>
+                        <div id="label-eta" className={classNames('bold', styles.label_form)}>Età piantagione</div>
                         <Select
+                            inputId="react-select-eta"
+                            aria-labelledby="label-eta"
                             value={obj['eta'] ?? ''}
                             onChange={(e) => handleField(e, 'eta')}
                             options={[
@@ -217,8 +233,10 @@ export const FormComponent = ({ obj, setObj }) => {
                         />
                     </div>
                     <div className="mr-20 ">
-                        <div className={classNames('bold', styles.label_form)}>Irrigazione</div>
+                        <div id="label-irrigazione" className={classNames('bold', styles.label_form)}>Irrigazione</div>
                         <Select
+                            inputId="react-select-irrigazione"
+                            aria-labelledby="label-irrigazione"
                             value={obj['irrigazione'] ?? ''}
                             onChange={(e) => handleField(e, 'irrigazione')}
                             options={[
@@ -231,8 +249,10 @@ export const FormComponent = ({ obj, setObj }) => {
                         />
                     </div>
                     <div className="mr-20 ">
-                        <div className={classNames('bold', styles.label_form)}>Fertilizzazione</div>
+                        <div id="label-fertilizzazione" className={classNames('bold', styles.label_form)}>Fertilizzazione</div>
                         <Select
+                            inputId="react-select-fertilizzazione"
+                            aria-labelledby="label-fertilizzazione"
                             value={obj['fertilizzazione'] ?? ''}
                             onChange={(e) => handleField(e, 'fertilizzazione')}
                             options={[
@@ -245,8 +265,10 @@ export const FormComponent = ({ obj, setObj }) => {
                         />
                     </div>
                     <div className="mr-20 ">
-                        <div className={classNames('bold', styles.label_form)}>Potatura</div>
+                        <div id="label-potatura" className={classNames('bold', styles.label_form)}>Potatura</div>
                         <Select
+                            inputId="react-select-potatura"
+                            aria-labelledby="label-potatura"
                             value={obj['potatura'] ?? ''}
                             onChange={(e) => handleField(e, 'potatura')}
                             options={[
@@ -259,8 +281,10 @@ export const FormComponent = ({ obj, setObj }) => {
                         />
                     </div>
                     <div className="mr-20 ">
-                        <div className={classNames('bold', styles.label_form)}>Controllo parassiti</div>
+                        <div id="label-controllo_parassiti" className={classNames('bold', styles.label_form)}>Controllo parassiti</div>
                         <Select
+                            inputId="react-select-controllo_parassiti"
+                            aria-labelledby="label-controllo_parassiti"
                             value={obj['controllo_parassiti'] ?? ''}
                             onChange={(e) => handleField(e, 'controllo_parassiti')}
                             options={[

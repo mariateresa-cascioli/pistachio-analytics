@@ -103,7 +103,7 @@ export const HarvestComponent = ({ roundedValues, produzioneMensileTop, produzio
             y: {
                 title: {
                     display: true,
-                    text: 'Produzione Mensile (unità)',  // Etichetta asse Y
+                    text: 'Produzione Mensile (kg)',  // Etichetta asse Y
                     font: {
                         size: 14,
                         weight: 'bold',

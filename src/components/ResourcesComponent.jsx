@@ -88,7 +88,7 @@ export const ResourcesComponent = ({ valoriIniziali, produzioneAnnua }) => {
     };
 
     const barData = {
-        labels: ['Efficienza teorica massima', 'Efficienza effettivo'],
+        labels: ['Efficienza teorica massima', 'Efficienza effettiva'],
         // 'utilizzo irrigazione', 'utilizzo fertilizzazione'],
         datasets: [
             {
