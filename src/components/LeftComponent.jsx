@@ -20,7 +20,12 @@ export const LeftComponent = ({ title }) => {
                     </React.Fragment>
                         :
                         (title === 'Resources' ?
-                            <React.Fragment>Testo uso delle risorse</React.Fragment>
+                            <React.Fragment>Analisi dell'Uso delle Risorse nella Coltivazione del Pistacchio
+                            Nella gestione delle coltivazioni di pistacchi, è fondamentale monitorare l'uso delle risorse impiegate nella produzione, poiché esse influenzano direttamente sia la resa che l'efficienza agricola.<br/>
+                            In particolare, l'irrigazione e la fertilizzazione sono i principali fattori da tenere sotto controllo, in quanto sono essenziali per ottimizzare la crescita delle piante e garantire una produzione sostenibile ed elevata.<br/>
+                            <br/>
+                            Nel grafico 'Produzione Annua' viene confrontata la resa ideale in condizioni ottimali di coltivazione, calcolata come 3000 kg/ha (colore Rosso Mattone), e la produzione annua stimata, ottenuta tenendo conto dei vari fattori agronomici selezionati (colore Verde). Il grafico evidenzia come la produzione annua vari in base ai fattori agronomici, come la densità di impianto, l'irrigazione, la fertilizzazione e altre variabili che influenzano direttamente la resa del pistacchio.<br/>
+                            I grafici a ciambella, invece, mostrano un confronto visivo tra la produzione massima ottimale e i valori stimati, normalizzati come percentuali. Questo approccio permette di visualizzare in modo intuitivo e immediato come l'uso delle risorse influisca sulla resa complessiva della coltivazione del pistacchio.</React.Fragment>
                             :
                             <React.Fragment>Testo Performance finanziaria</React.Fragment>
                         )}
