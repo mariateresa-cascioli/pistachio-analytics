@@ -228,7 +228,7 @@ export const FinancialComponent = ({ valoriIniziali, produzioneAnnua }) => {
                     </div>
                     <div className={classNames("justify-left", styles.slider_cointainer)}>
                         <div className="mb-10 default-font-size semiBold text-dark">
-                            Costo pistacchio/kg: {obj['costo_pistacchio']}€
+                            Prezzo vendita pistacchio/kg: {obj['costo_pistacchio']}€
                         </div>
                         <ReactSlider
                             className="custom-slider"
