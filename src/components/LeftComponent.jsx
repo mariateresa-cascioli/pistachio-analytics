@@ -6,7 +6,7 @@ export const LeftComponent = ({ title }) => {
 
     return (
         <React.Fragment>
-            <div className={styles.description_title}>{title === 'Harvest' ? 'Proiezione Mensile della Resa di Pistacchio' : title === 'Resources' ? "Analisi dell'Uso delle Risorse nella Coltivazione del Pistacchio" : 'Performance Finanziaria e Proiezioni di Guadagno nella Coltivazione del Pistacchio'}</div>
+            <div className={styles.description_title}>{title === 'Harvest' ? 'Proiezione Mensile della Resa di Pistacchio' : title === 'Resources' ? "Analisi dell'Uso delle Risorse nella Coltivazione del Pistacchio" : 'Proiezioni di Guadagno nella Coltivazione del Pistacchio'}</div>
             <div className={classNames(styles.description_container)}>
                 <div className={classNames(styles.description)}>
                     {title === 'Harvest' ? <React.Fragment>
@@ -32,12 +32,13 @@ I grafici a ciambella, invece, mostrano un confronto visivo tra la produzione ma
 </React.Fragment>
                             :
                             <React.Fragment>
-                                Il prezzo del pistacchio è determinato da diversi fattori come la domanda di mercato, la qualità del prodotto e le condizioni climatiche che ne influenzano la produzione. Anche i costi legati all'irrigazione, alla fertilizzazione e alla gestione delle risorse naturali usati per la sua produzione incidono sul prezzo di vendita. Trovare un equilibrio tra i costi di produzione ed il prezzo di vendita del pistacchio è la sfida alla quale i produttori sono chiamati ad affrontare tutti gli anni. <br/>
-                                L'analisi dei costi di produzione, insieme alla valutazione del prezzo di mercato del pistacchio è cruciale per comprendere la performance finanziaria complessiva della colivazione. in questo contesto i grafici che seguono forniscono una panoramica dell'efficienza produttiva mettendo in evidenza come variabili come il costo dell'acqua, della fertilizzazione e del prezzo di vendita influenzano i risultati economici.<br/>
-                                <br/>
-                                Gli slider presenti nel modello offrono la possibilità di impostare dei valori compresi in dei range per fattori come "Numero Ettari", "Costo Acqua/Litro", "Costo Fertilizazione/kg", "Prezzo Vendita Pistacchio/kg". Attraverso la regolazione di questi slider è possibile simulare diversi scenari economici ed ottenere una visione su come i cambiamenti in ciascuno di questi fattori influenzi la performance finanziari complessiva della coltivazione del pistacchio.<br/>
-                                Il primo grafico, "Efficienza Calcolata", mostra il rapporto tra la produzione ottimale di pistacchi (3000 kg/ha) e la produzione stimata in base ai fattori agronomici selezionati. Viene rappresentato come una percentuale, offrendo una visione immediata dell'efficienza della coltivazione rispetto al massimo potenziale teorico.<br/>
-                                Il secondo grafico, "Margini di Miglioramento", mostra il confronto tra il guadagno teorico ottenuto dalla produzione ottimale e quella stimata, evidenziando anche i costi associati all'irrigazione e alla fertilizzazione. Questo grafico permette di visualizzare come variabili come il prezzo dell’acqua, il costo della fertilizzazione e il prezzo di vendita influenzano i margini di profitto, offrendo una panoramica chiara delle opportunità di miglioramento economico.<br/>
+Per effettuare la stima dei costi e dei guadagni derivati dalla coltivazione del pistacchio si è deciso di omettere i costi fissi come affitto di locali, utenze, spese per il personale, assicurazioni, licenze e di semplificare eventuali tipi di vendita con i diversi prezzi derivati, utilizzando un unico prezzo per chilogrammo.<br/>
+Il prezzo del pistacchio è determinato dalla domanda di mercato, la qualità del prodotto e dalle fattori che ne condizionano la produzione. Anche i costi affrontati durante la coltivazione del pistacchio partecipano alla definizione del suo prezzo, i costi d'irrigazione e di fertilizzazione incidono in modo diretto sul prezzo di vendita.<br/>
+<br/>
+I grafici forniscono una panoramica sull'efficienza produttiva mettendo in evidenza variabili come il costo dell'acqua, della fertilizzazione e del prezzo di vendita di queste, influenzino i risultati economici.<br/>
+Cambiando i valori come il costo delle risorse o il prezzo di vendita, è possibile simulare diversi scenari economici ottenendo una visione dell'impatto che questi hanno sulla performance finanziaria complessiva della coltivazione del pistacchio.<br/> 
+Il grafico "Efficienza Calcolata" sottolinea il rapporto tra la produzione ottimale di pistacchi (3000 kg/ha) e la produzione stimata in base ai fattori agronomici selezionati. Rappresentando come una percentuale questo rapporto, offre una visione immediata sull'efficienza della coltivazione stimata rispetto al massimo potenziale teorico.<br/>
+Il grafico "Margini di Miglioramento" mette in evidenza il confronto tra il guadagno teorico ottenuto dalla produzione ottimale e quella stimata, affiancandoli ai costi sostenuti per l'irrigazione e la fertilizzazione. Questo grafico mostra in modo diretto come al variare dei costi come il prezzo dell’acqua, il costo della fertilizzazione ed il prezzo di vendita influenzino i margini di profitto, offrendo una panoramica chiara delle opportunità di miglioramento economico.<br/>
                             </React.Fragment>
                         )}
                 </div>
