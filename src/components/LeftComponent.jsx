@@ -10,11 +10,14 @@ export const LeftComponent = ({ title }) => {
             <div className={classNames(styles.description_container)}>
                 <div className={classNames(styles.description)}>
                     {title === 'Harvest' ? <React.Fragment>
-                        La produzione del pistacchio segue un ciclo annuale. Dopo la fioritura primaverile, i frutti si sviluppano e vengono raccolti generalmente verso fine estate o inizio autunno. Tipicamente il picco della raccolta è concentrato nei mesi di agosto e settembre.<br />
-                        Il grafico mostra l'efficienza stimata della produzione mensile, espressa in chilogrammi, per un ettaro sulla base dei fattori agronomici selezionati.<br />
-                        Per ottenere i dati mostrati nel grafico, sono stati presi in considerazione diversi fattori agronomici che influenzano la produzione del pistacchio.<br />
-                        Ogni mese dell'anno è stato associato a un "valore" di produzione, mentre ogni fattore agronomico contribuisce con un peso diverso alla resa del pistacchio.<br />
-                        I valori di questi fattori sono stati applicati a un modello di previsione dell'"efficienza" di produzione per ciascun mese. Combinando i fattori secondo pesi specifici, si ottiene una proiezione realistica della produzione mensile di pistacchi.<br />
+Pistacia vera, ossia il Pistacchio, è un arbusto, un piccolo albero a foglia caduca, della famiglia delle Anacardiaceae. Un albero adulto raggiunge fino a 6 metri di altezza con un diametro complessivo della chioma della pianta di 5 metri.<br/>
+Si coltivano varietà di pistacchio raggruppate in bianche, rosse e gialle, in relazione al colore del pericarpo (mallo). La varietà più diffusa in Italia è la  Bianca, comunemente chiamata "Napoletana" o "Nostrale", di cui il seme di colore verde ne rappresenta il fattore commerciale di pregio.<br/>
+La pianta di pistacchio si adatta ai viti tipi di suolo e di clima, infatti anche se è una specie adattata ai climi temperati e secchi è in grado di resistere anche a temperature come 40-45° fino i -30° in inverno. In oltre si difende bene dalla siccità e gelate tardive primaverili ricacciando nuove gemme.<br/>
+Il pistacchio fruttifica in un ciclo biennale che assieme alle variazioni climatiche causa grandi variazioni nelle rese e nei prezzi. Producendo frutti tutti gli anni, la produzione è soggetta ad anni di carica e di scarica. Tipicamente si cerca di far riposare la pianta durante gli anni di scarica in modo da avere un raccolto più abbondante negli anni di carica.<br/>
+<br/>
+Per motivi di comodità prendiamo in esame un ipotetico anno di "carica" dove impostando i vari fattori argonomici che influenzano la produzione ne analizziamo la resa per ogni mese dell'anno.<br/>
+Ogni mese dell'anno è stato associato a un "valore" di produzione, mentre ogni fattore agronomico contribuisce con un peso diverso alla resa del pistacchio.<br/>
+I valori di questi fattori sono stati applicati a un modello di previsione dell'"efficienza" di produzione per ciascun mese. Combinando i fattori secondo pesi specifici, si ottiene una proiezione realistica della produzione mensile di pistacchi.<br/>
 
                     </React.Fragment>
                         :
