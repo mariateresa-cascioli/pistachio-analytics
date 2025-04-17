@@ -70,6 +70,9 @@ export const customStyles = {
 };
 
 export const customModalStyles = {
+      overlay: {
+        backgroundColor: 'rgba(77, 77, 77, 0.6)', // grigio topo trasparente
+    },
     content: {
         backgroundColor: '#fafafa',
         top: '50%',
