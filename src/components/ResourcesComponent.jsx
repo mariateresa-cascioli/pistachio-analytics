@@ -207,7 +207,7 @@ export const ResourcesComponent = ({ valoriIniziali, produzioneAnnua }) => {
 
     return (
         <div>
-            <div className="flex w-100" Style="margin-left: 40px; place-self: center;">
+            <div className="flex wrap w-100" Style="margin-left: 40px; place-self: center; place-content: center;">
                 <div className={classNames("w-50 ", styles.resources_chart_container)}>
                     <div className={styles.resources_chart_wrapper_bar}>
                         <Bar data={barData} options={barOptions} />

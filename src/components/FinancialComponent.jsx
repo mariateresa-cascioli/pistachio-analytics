@@ -180,7 +180,7 @@ export const FinancialComponent = ({ valoriIniziali, produzioneAnnua }) => {
     return (
         <div>
             <div className="w-100">
-                <div className="flex">
+                <div className="flex wrap">
                     <div className={classNames("justify-left", styles.slider_cointainer)}>
                         <div className="mb-10 default-font-size semiBold text-dark">
                             Numero ettari: {obj['ettari']}
@@ -243,21 +243,14 @@ export const FinancialComponent = ({ valoriIniziali, produzioneAnnua }) => {
                     </div>
                 </div>
             </div>
-            <div className="flex vertical-center">
-                <div className={classNames("w-50 ", styles.resources_chart_container)}>
-                    <div className="flex wrap">
-                        <div className={styles.resources_chart_wrapper_financial}>
-                            <Doughnut data={doughnutData} options={options} />
-                        </div>
-                    </div>
+            <div className="flex wrap vertical-center w-100" Style="place-content: center;">
+                <div className={classNames("w-50 ", styles.resources_chart_container)} Style=" max-width: 400px; !important">
+                    <Doughnut data={doughnutData} options={options} />
                 </div>
                 <div className={classNames("w-50 ", styles.resources_chart_container)}>
-                    <div style={{ margin: '0 auto' }}>
-                        <Bar data={barData} options={barOptions} />
-                    </div>
+                    <Bar data={barData} options={barOptions} />
                 </div>
             </div>
-        </div >
-
+        </div>
     );
 };
