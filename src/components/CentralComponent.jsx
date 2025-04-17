@@ -43,7 +43,7 @@ export const CentralComponent = ({ selectedComponent, setSelectedComponent, mont
             <div className={styles.container}>
                 <div>
                     <div className={classNames('flex', styles.menu_container)}>
-                        <div onClick={() => setSelectedComponent('Harvest')} className={selectedComponent === 'Harvest' ? classNames('bold', styles.menu_label, styles.menu_selected) : classNames('semiBold  pointer', styles.menu_label)}>Efficienza del raccolto</div>
+                        <div onClick={() => setSelectedComponent('Harvest')} className={selectedComponent === 'Harvest' ? classNames('bold', styles.menu_label, styles.menu_selected) : classNames('semiBold  pointer', styles.menu_label)}>Andamento produttivo</div>
                         <div onClick={() => setSelectedComponent('Resources')} className={selectedComponent === 'Resources' ? classNames('bold', styles.menu_label, styles.menu_selected) : classNames('semiBold pointer', styles.menu_label)}>Uso delle risorse</div>
                         <div onClick={() => setSelectedComponent('Financial')} className={selectedComponent === 'Financial' ? classNames('bold', styles.menu_label, styles.menu_selected) : classNames('semiBold pointer', styles.menu_label)}>Performance finanziaria</div>
                     </div>
