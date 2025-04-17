@@ -3,7 +3,7 @@ import styles from "../css/Homepage.module.scss"
 import classNames from "classnames";
 import { CentralComponent } from "./CentralComponent";
 import { FormComponent } from "./FormComponent";
-import { getValues, convertFactors, sumValues, calculateMonthlyProduction } from "../utils/formuleHelper";
+import { getValues, convertFactors, sumValues, calcoloProduzioneMensile } from "../utils/formuleHelper";
 
 export const Homepage = () => {
 
@@ -46,7 +46,7 @@ export const Homepage = () => {
                 "potatura": fattoriConvertiti['potatura'],
                 "controllo_parassiti": fattoriConvertiti['controllo_parassiti'],
             }
-            let produzioneMesePerMese = calculateMonthlyProduction(fattoriAmbientali, fattoriProduttivi)
+            let produzioneMesePerMese = calcoloProduzioneMensile(fattoriAmbientali, fattoriProduttivi)
             setMonthlyProduction(produzioneMesePerMese)
             let produzioneAnnua = sumValues(produzioneMesePerMese)
             console.log("homepage produzione annua")

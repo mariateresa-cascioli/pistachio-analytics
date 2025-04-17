@@ -31,7 +31,7 @@ export function getValues(obj) {
     return mappedValues
 }
 
-export function calculateMonthlyProduction(fattoriAmbientali, fattoriProduttivi) {
+export function calcoloProduzioneMensile(fattoriAmbientali, fattoriProduttivi) {
     // Pesi dei fattori ambientali (influenza sulla produzione)
     const pesiAmbientali = {
         "temperatura": 0.30,
@@ -116,7 +116,7 @@ const fattoriProduttiviTop = {
 };
 
 // Calcolo della produzione mese per mese
-export const produzioneMensileTop = calculateMonthlyProduction(fattoriAmbientaliTop, fattoriProduttiviTop);
+export const produzioneMensileTop = calcoloProduzioneMensile(fattoriAmbientaliTop, fattoriProduttiviTop);
 
 export const produzioneMensileMiddle = Object.keys(produzioneMensileTop).reduce((acc, mese) => {
     acc[mese] = produzioneMensileTop[mese] / 2;
