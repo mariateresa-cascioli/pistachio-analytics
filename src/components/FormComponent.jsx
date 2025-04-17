@@ -27,21 +27,6 @@ export const FormComponent = ({ obj, setObj }) => {
         setObj({ ...tmp })
     }
 
-    let resetValues = {
-        "controllo_parassiti": { "label": "Nessun controllo", "value": 1 },
-        "densita": { "label": "<150 o >300 piante/ha", "value": 1 },
-        "eta": { "label": "<5 o >70 anni", "value": 1 },
-        "fertilizzazione": { "label": "<50 kg/ha/anno", "value": 1 },
-        "irraggiamento": { "label": "<2000 h/anno", "value": 1 },
-        "irrigazione": { "label": "<500 L/pianta/anno", "value": 1 },
-        "potatura": { "label": "<10% di rami potati all'anno", "value": 1 },
-        "precipitazioni": { "label": "<150 mm/anno", "value": 1 },
-        "suolo": { "label": "pH <6.5 o >8.5", "value": 1 },
-        "temperatura": { "label": "<0 C°", "value": 1 },
-        "umidita": { "label": "<40% (bassa)", "value": 1 },
-        "vento": { "label": "<30 km/h (debole)", "value": 3 }
-    }
-
     let baseValues = {
         "controllo_parassiti": { "label": "Nessun controllo", "value": 1 },
         "densita": { "label": "<150 piante/ha", "value": 1 },
@@ -94,8 +79,6 @@ export const FormComponent = ({ obj, setObj }) => {
             setObj({ ...mediumValues })
         else if (range === 'high')
             setObj({ ...bestValues })
-        else if (range === "reset")
-            setObj({ ...resetValues })
     }
 
     return (
@@ -307,7 +290,6 @@ export const FormComponent = ({ obj, setObj }) => {
                             <div className={classNames('pointer mr-10 semiBold', styles.fast_analytics_button)} onClick={() => handleFastAnalyticsButton('low')}>Condizioni sfavorevoli</div>
                             <div className={classNames('pointer mr-10 semiBold', styles.fast_analytics_button)} onClick={() => handleFastAnalyticsButton('medium')}>Condizioni medie</div>
                             <div className={classNames('pointer mr-10 semiBold', styles.fast_analytics_button)} onClick={() => handleFastAnalyticsButton('high')}>Condizioni ottimali</div>
-                            <div className={classNames('pointer mr-10 semiBold', styles.fast_analytics_button, styles.reset_button)} onClick={() => handleFastAnalyticsButton('reset')}>Reset</div>
                         </div>
                     </div>
                 </div>
